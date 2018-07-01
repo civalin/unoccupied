@@ -24,7 +24,7 @@ class NumberNameFinder:
         self.template = template
         self.start = start
 
-    def __call__(self, basename, occupied):
+    def __call__(self, basename, norm_occupied):
         """Get the first unoccupied name (not include `basename` itself)."""
         checked = set()
 
@@ -36,7 +36,7 @@ class NumberNameFinder:
             else:
                 checked.add(testing_name)
 
-            if testing_name not in occupied:
+            if testing_name not in norm_occupied:
                 return testing_name
 
 
@@ -61,7 +61,7 @@ class FileNameFinder:
         self.template = template
         self.start = start
 
-    def __call__(self, basename, occupied):
+    def __call__(self, basename, norm_occupied):
         """Get the first unoccupied name (not include `basename` itself)."""
         checked = set()
         base, ext = os.path.splitext(basename)
@@ -74,5 +74,5 @@ class FileNameFinder:
             else:
                 checked.add(testing_name)
 
-            if testing_name not in occupied:
+            if testing_name not in norm_occupied:
                 return testing_name

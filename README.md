@@ -1,6 +1,17 @@
 # Unoccupied
 
-Find an unoccupied name from basename & occupied names.
+Find an unoccupied name from `basename` & `occupied names`.
+
+If you tired to write a bunch of code to deal `unnamed note 02`, `pic-03.jpg`, `archive.part4.zip` naming problem. It's for you.
+
+
+
+## Features
+
+- Based on basename: find an unoccupied name as close as user wanted, not randomly.
+- Isolated: pure function API, no related outer environment like filesystem or DB.
+- Stable: consider edge situations and already be tested.
+- Flexible: library user can choice / overwrite naming algorithm easily.
 
 
 
@@ -77,16 +88,16 @@ unoccupied(basename, occupied, name_finder)
 
 #### Build a Name Finder
 
-A `name_finder` is just a callable accept 2 arguments: (`basename`, `occupied`), so feel free to build your own. e.g.:
+A `name_finder` is just a callable accept 2 arguments: (`basename`, `norm_occupied`), so feel free to build your own. e.g.:
 
 ```python3
 import string
 from unoccupied import unoccupied
 
-def alphabet_name_finder(basename, occupied):
+def alphabet_name_finder(basename, norm_occupied):
     for char in string.ascii_lowercase:
         testing_name = '{}-{}'.format(basename, char)
-        if testing_name not in occupied:
+        if testing_name not in norm_occupied:
             return testing_name
 
 unoccupied('foo', ['foo'], alphabet_name_finder)
@@ -104,11 +115,11 @@ Find a unoccupied name.
 - `basename`: (str) the wanted basename.
 - `occupied`: (str of iterable) the names already be occupied.
 
-`name_finder` is a callable with 2 arguments (`basename`, `occupied`). This function only be called when `basename` cannot use directly, and it should return `None` or `str`. Return `None` mean cannot find any unoccupied name and cause `unoccupied()` raise `UnoccupiedNameNotFound` exception.
+`name_finder` is a callable with 2 arguments (`basename`, `norm_occupied`). This function only be called when `basename` cannot use directly, and it should return `None` or string. Return `None` mean it can't find any unoccupied name and cause `unoccupied()` raise `UnoccupiedNameNotFound` exception.
 
-> Hint: Before call the `name_finder`, `occupied` will be convert to `frozenset` data type internally. If and only if you try to build a name_finder by yourself, you may need to know that.
+> Hint: `occupied` will be convert to `frozenset` data type (we call it `norm_occupied`) and inject to `name_finder`. If and only if you try to build a `name_finder` by yourself, you may need to know that.
 
-`nobase` is a boolean value. It request do not use `basename` as return directly, no matter `basename` already in `occupied` or not.
+`nobase` is a boolean value. If `True`, then `basename` will not return directly, no matter the `basename` already in `occupied` or not. So user can generate a consistent name series like `pic-01`, `pic-02`, but not include `pic`.
 
 
 
