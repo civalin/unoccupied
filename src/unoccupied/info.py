@@ -1,6 +1,6 @@
 """Cmdlr infomation files."""
 
-VERSION = (0, 1, 0)
+VERSION = (0, 1, 1)
 
 VERSION_STR = '.'.join(map(lambda x: str(x), VERSION))
 DESCRIPTION = 'Generate unoccupied name.'
