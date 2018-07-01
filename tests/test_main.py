@@ -22,7 +22,7 @@ class TestUnoccupied:
     def test_nobase(self):
         assert unoccupied('foo', [], nobase=True) == 'foo-1'
 
-    def test_not_call_name_finder_only_basename_not_in_occupied(self):
+    def test_call_name_finder_only_needed(self):
         called = False
 
         def pseudo_name_finder(basename, occupied):

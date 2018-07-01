@@ -25,7 +25,7 @@ def unoccupied(
                 `name_finder()` must return str type or None.
 
                 If return None, mean not found any unoccupied name.
-                == raise UnoccupiedNameNotFound exception
+                    ==> raise UnoccupiedNameNotFound exception
 
         nobase: (bool)
             not allow use `basename` directly. even basename not in occupied.
