@@ -10,7 +10,7 @@ class UnoccupiedNameNotFound(Exception):
 
 
 def unoccupied(
-        basename, occupied, name_finder=NumberNameFinder(), nobase=False):
+        basename, occupied, name_finder=NumberNameFinder(), skipbase=False):
     """Get unoccupied name by base name, occupied names & name gen func.
 
     Args:
@@ -31,7 +31,7 @@ def unoccupied(
 
                 Note: occupied already be convert to `frozenset` data type.
 
-        nobase: (bool)
+        skipbase: (bool)
             not allow use `basename` directly. even basename not in occupied.
 
     Returns:
@@ -41,7 +41,7 @@ def unoccupied(
     if isinstance(occupied, str):
         raise TypeError('`occupied` can not a str type object.')
 
-    if nobase:
+    if skipbase:
         norm_occupied = frozenset(chain([basename], occupied))
     else:
         norm_occupied = frozenset(occupied)

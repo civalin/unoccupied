@@ -19,8 +19,8 @@ class TestUnoccupied:
         with pytest.raises(TypeError):
             unoccupied('foo', 'bar')  # str as `occupied` are not allow
 
-    def test_nobase(self):
-        assert unoccupied('foo', [], nobase=True) == 'foo-1'
+    def test_skipbase(self):
+        assert unoccupied('foo', [], skipbase=True) == 'foo-1'
 
     def test_call_name_finder_only_needed(self):
         called = False
