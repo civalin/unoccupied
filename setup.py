@@ -17,6 +17,7 @@ setup(
     url=info.PROJECT_URL,
     description=info.DESCRIPTION,
     long_description=long_desc,
+    long_description_content_type='text/markdown',
 
     classifiers=[
         'Programming Language :: Python :: 3',
