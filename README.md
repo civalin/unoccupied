@@ -119,7 +119,7 @@ Find a unoccupied name.
 
 > Hint: `occupied` will be convert to `frozenset` data type (we call it `norm_occupied`) and inject to `name_finder`. If and only if you try to build a `name_finder` by yourself, you may need to know that.
 
-`skipbase` is a boolean value. If `True`, then `basename` will not return directly, no matter the `basename` already in `occupied` or not. So user can generate a consistent name series like `pic-01`, `pic-02`, but not include `pic`.
+`skipbase` is a boolean value. If `True`, `basename` will not return directly, no matter the `basename` already in `occupied` or not. So user can generate a consistent name series like `pic-01`, `pic-02` and without `pic`.
 
 
 
