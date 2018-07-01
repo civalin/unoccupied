@@ -37,6 +37,14 @@ class TestUnoccupied:
         unoccupied('foo', ['foo'], pseudo_name_finder)
         assert called is True
 
+    def test_occupied_become_frozenset(self):
+        def pseudo_name_finder(basename, occupied):
+            assert isinstance(occupied, frozenset)
+
+            return 'whatever'
+
+        unoccupied('foo', ['foo'], pseudo_name_finder)
+
     def test_name_finder_return_none(self):
         with pytest.raises(UnoccupiedNameNotFound):
             def pseudo_name_finder(basename, occupied):

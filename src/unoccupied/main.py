@@ -1,5 +1,7 @@
 """Main module."""
 
+from itertools import chain
+
 from .namefinder import NumberNameFinder
 
 
@@ -27,6 +29,8 @@ def unoccupied(
                 If return None, mean not found any unoccupied name.
                     ==> raise UnoccupiedNameNotFound exception
 
+                Note: occupied already be convert to `frozenset` data type.
+
         nobase: (bool)
             not allow use `basename` directly. even basename not in occupied.
 
@@ -37,18 +41,18 @@ def unoccupied(
     if isinstance(occupied, str):
         raise TypeError('`occupied` can not a str type object.')
 
-    occupied = set(occupied)
-
     if nobase:
-        occupied.add(basename)
+        norm_occupied = frozenset(chain([basename], occupied))
+    else:
+        norm_occupied = frozenset(occupied)
 
-    if basename not in occupied:
+    if basename not in norm_occupied:
         return basename
     else:
-        new_name = name_finder(basename, occupied)
+        new_name = name_finder(basename, norm_occupied)
 
     if isinstance(new_name, str):
-        if new_name in occupied:
+        if new_name in norm_occupied:
             raise UnoccupiedNameNotFound(
                 '`name_finder` should not return a name "{}"'
                 ' already in occupied.'

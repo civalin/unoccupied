@@ -106,7 +106,7 @@ Find a unoccupied name.
 
 `name_finder` is a callable with 2 arguments (`basename`, `occupied`). This function only be called when `basename` cannot use directly, and it should return `None` or `str`. Return `None` mean cannot find any unoccupied name and cause `unoccupied()` raise `UnoccupiedNameNotFound` exception.
 
-> Hint: Before call the `name_finder`, `occupied` will be convert to `set` type internally. If and only if you try to build a name_finder by youself, you may need to know that.
+> Hint: Before call the `name_finder`, `occupied` will be convert to `frozenset` data type internally. If and only if you try to build a name_finder by yourself, you may need to know that.
 
 `nobase` is a boolean value. It request do not use `basename` as return directly, no matter `basename` already in `occupied` or not.
 
