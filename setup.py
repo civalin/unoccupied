@@ -21,6 +21,9 @@ setup(
 
     classifiers=[
         'Programming Language :: Python :: 3',
+        'License :: OSI Approved :: MIT License',
+        'Topic :: Software Development :: Libraries :: Python Modules',
+        'Topic :: Text Processing',
     ],
     install_requires=[],
     setup_requires=['pytest-runner'],
