@@ -127,8 +127,10 @@ class AlphabetNameFinder2(BaseNameFinder):
     """Configurable alphabet name finder."""
     def __init__(self, template):       # here is a configurable option.
         self.template = template
+
     def ids_generator(self):
         return string.ascii_lowercase
+
     def formatter(self, basename, id):  # change formatting algorithm
         return self.template.format(basename=basename, id=id)
 
@@ -144,7 +146,7 @@ As you see. `BaseNameFinder` packed some tedious work like for-loop & infinite l
 
 ## Reference
 
-### unoccupied(basename, occupied, name_finder=NumberNameFinder(), skipbase=False)
+### function unoccupied(basename, occupied, name_finder=NumberNameFinder(), skipbase=False)
 
 Find a unoccupied name.
 
@@ -159,25 +161,25 @@ Find a unoccupied name.
 
 
 
-### BaseNameFinder()
+### class BaseNameFinder()
 
 This is the base class of built-in NameFinder class. It has 2 method which can (but not necessary) be overwrited:
 
 
 
-#### ids_generator(self) -> Iterable
+#### method ids_generator(self) -> Iterable
 
 This method will create a series of `id` and push into `self.formatter()`.
 
 
 
-#### formatter(self, basename, id) -> str
+#### method formatter(self, basename, id) -> str
 
 This method can assemble `basename` and `id` then return a string by any algorithm.
 
 
 
-### NumberNameFinder(template='{basename}-{num}', start=1)
+### class NumberNameFinder(template='{basename}-{num}', start=1)
 
 Generate a `name_finder` to find an unoccupied name with `basename` and an increasing number.
 
@@ -187,7 +189,7 @@ The `template` argument is a python `str.format()` template. This template can i
 
 
 
-### FileNameFinder(template='{base}-{num}', start=1)
+### class FileNameFinder(template='{base}-{num}', start=1)
 
 Generate a `name_finder` to find an unoccupied name with processed filename and an increasing number.
 
