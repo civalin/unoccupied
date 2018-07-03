@@ -2,8 +2,22 @@
 
 import pytest
 
+from src.unoccupied.namefinder import BaseNameFinder
 from src.unoccupied.namefinder import NumberNameFinder
 from src.unoccupied.namefinder import FileNameFinder
+
+
+class TestBaseNameFinder:
+    @pytest.mark.parametrize('basename, occupied, expected', [
+        ('foo', [], 'foo-1'),
+        ('foo', ['foo'], 'foo-1'),
+        ('foo', ['foo', 'foo-1'], 'foo-2'),
+        ('foo', ['foo', 'foo-2'], 'foo-1'),
+    ])
+    def test_usage(self, basename, occupied, expected):
+        base_name_finder = BaseNameFinder()
+
+        assert base_name_finder(basename, occupied) == expected
 
 
 class TestNumberNameFinder:
@@ -25,6 +39,7 @@ class TestNumberNameFinder:
         assert number_name_finder(basename, occupied) == expected
 
     @pytest.mark.parametrize('basename, occupied, expected', [
+        ('foo', [], 'foo-1'),
         ('foo', ['foo'], 'foo-1'),
         ('foo', ['foo', 'foo-1'], 'foo-2'),
         ('foo', ['foo', 'foo-2'], 'foo-1'),
@@ -54,6 +69,7 @@ class TestFileNameFinder:
         assert file_name_finder(basename, occupied) == expected
 
     @pytest.mark.parametrize('basename, occupied, expected', [
+        ('foo.txt', [], 'foo-1.txt'),
         ('foo.txt', ['foo.txt'], 'foo-1.txt'),
         ('foo.txt', ['foo.txt', 'foo-1.txt'], 'foo-2.txt'),
         ('foo.txt', ['foo.txt', 'foo-2.txt'], 'foo-1.txt'),

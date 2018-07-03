@@ -104,6 +104,42 @@ unoccupied('foo', ['foo'], alphabet_name_finder)
 # >>> 'foo-a'
 ```
 
+Or, using `BaseNameFinder` class to build a `name_finder`:
+
+```python3
+import string
+from unoccupied import unoccupied
+from unoccupied import BaseNameFinder
+
+
+class AlphabetNameFinder(BaseNameFinder):
+    """Basic alphabet name finder."""
+    def ids_generator(self):
+        return string.ascii_lowercase
+
+alphabet_name_finder = AlphabetNameFinder()
+
+unoccupied('foo', ['foo'], alphabet_name_finder)
+# >>> 'foo-a'
+
+
+class AlphabetNameFinder2(BaseNameFinder):
+    """Configurable alphabet name finder."""
+    def __init__(self, template):       # here is a configurable option.
+        self.template = template
+    def ids_generator(self):
+        return string.ascii_lowercase
+    def formatter(self, basename, id):  # change formatting algorithm
+        return self.template.format(basename=basename, id=id)
+
+alphabet_name_finder2 = AlphabetNameFinder2(template='{basename}.{id}')
+
+unoccupied('foo', ['foo'], alphabet_name_finder2)
+# >>> 'foo.a'
+```
+
+As you see. `BaseNameFinder` packed some tedious work like for-loop & infinite loop checking. And good for offer some configurable options for further usage.
+
 
 
 ## Reference
@@ -120,6 +156,24 @@ Find a unoccupied name.
 > Hint: `occupied` will be convert to `frozenset` data type (we call it `norm_occupied`) and inject to `name_finder`. If and only if you try to build a `name_finder` by yourself, you may need to know that.
 
 `skipbase` is a boolean value. If `True`, `basename` will not return directly, no matter the `basename` already in `occupied` or not. So user can generate a consistent name series like `pic-01`, `pic-02` and without `pic`.
+
+
+
+### BaseNameFinder()
+
+This is the base class of built-in NameFinder class. It has 2 method which can (but not necessary) be overwrited:
+
+
+
+#### ids_generator(self) -> Iterable
+
+This method will create a series of `id` and push into `self.formatter()`.
+
+
+
+#### formatter(self, basename, id) -> str
+
+This method can assemble `basename` and `id` then return a string by any algorithm.
 
 
 
