@@ -6,7 +6,7 @@ from .namefinder import BaseNameFinder
 from .namefinder import NumberNameFinder
 from .namefinder import FileNameFinder
 
-__version__ = '0.2.0'
+__version__ = '0.2.1'
 
 __all__ = ['unoccupied',
            'UnoccupiedNameNotFound',
