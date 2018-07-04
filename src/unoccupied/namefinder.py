@@ -1,9 +1,19 @@
 """Name finder - find and return a unoccupied name."""
 
 import os
+import sys
 
 from itertools import count
-from functools import lru_cache
+
+
+# import lru_cache and support python < 3.2
+if sys.version_info[0] >= 3 and sys.version_info[1] >= 2:
+    from functools import lru_cache
+else:
+    def lru_cache():
+        """Compatible lru_cache in python2."""
+        def dummy_decorator(func):
+            return func
 
 
 def _standard_name_finder(
@@ -125,7 +135,7 @@ class FileNameFinder(BaseNameFinder):
         self.template = template
         self.start = start
 
-    @lru_cache()
+    # @lru_cache()
     def __split_basename(self, basename):
         """Cache splited result of basename."""
         return os.path.splitext(basename)
