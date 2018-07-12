@@ -1,6 +1,6 @@
 # Unoccupied
 
-Find an unoccupied name from `basename` & `occupied names`.
+Find an unoccupied name by `basename` & `occupied names`.
 
 If you tired to write a bunch of code to deal `unnamed note 02`, `pic-03.jpg`, `archive.part4.zip` naming problem. It's for you.
 
@@ -9,7 +9,7 @@ If you tired to write a bunch of code to deal `unnamed note 02`, `pic-03.jpg`, `
 ## Features
 
 - Based on basename: find an unoccupied name as close as user wanted, not randomly.
-- Isolated: pure function API, no related outer environment like filesystem or DB.
+- Isolated: pure functional API, no related any outer environment like filesystem or DB.
 - Stable: consider edge situations and already be tested.
 - Flexible: library user can choice / overwrite naming algorithm easily.
 
@@ -157,7 +157,7 @@ Find a unoccupied name.
 
 > Hint: `occupied` will be convert to `frozenset` data type (we call it `norm_occupied`) and inject to `name_finder`. If and only if you try to build a `name_finder` by yourself, you may need to know that.
 
-`skipbase` is a boolean value. If `True`, `basename` will not return directly, no matter the `basename` already in `occupied` or not. So user can generate a consistent name series like `pic-01`, `pic-02` and without `pic`.
+`skipbase` is a boolean value. If `True`, `basename` will never return directly, no matter the `basename` already in `occupied` or not. So user can generate a consistent name series like `pic-01`, `pic-02` and without `pic`.
 
 
 
