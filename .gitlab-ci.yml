@@ -7,3 +7,7 @@ test:
   - pip --version
   - pip install -r test_requirements.txt
   - pytest
+
+pep8:
+  script:
+  - pep8
