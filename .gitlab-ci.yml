@@ -1,0 +1,9 @@
+image: "python:3.5"
+
+test:
+  script:
+  - uname -a
+  - python --version
+  - pip --version
+  - pip install -r test_requirements.txt
+  - pytest
