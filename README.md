@@ -21,7 +21,7 @@ If you tired to write a bunch of code to deal `unnamed note 02`, `pic-03.jpg`, `
 
 Use `basename` and `occupied` container (an iterable) to find a unoccupied name:
 
-```python3
+```python
 from unoccupied import unoccupied
 
 basename = 'foo'
@@ -46,7 +46,7 @@ Name finder offer an algorithm to find (or generate) an unoccupied name.
 
 Let's try to change the default name finder:
 
-```python3
+```python
 from unoccupied import unoccupied
 from unoccupied import NumberNameFinder  # A built-in name finder generator
 
@@ -66,7 +66,7 @@ unoccupied(basename, occupied, name_finder)
 
 Another case: Assume we need to find an unoccupied filename, but, we don't want the base filename `foo.txt` become `foo.txt-1`. The `foo-1.txt` is much suitable name. Try the built-in `FileNameFinder()`.
 
-```python3
+```python
 from unoccupied import unoccupied
 from unoccupied import FileNameFinder  # here
 
@@ -90,7 +90,7 @@ unoccupied(basename, occupied, name_finder)
 
 A `name_finder` is just a callable accept 2 arguments: (`basename`, `norm_occupied`), so feel free to build your own. e.g.:
 
-```python3
+```python
 import string
 from unoccupied import unoccupied
 
@@ -106,7 +106,7 @@ unoccupied('foo', ['foo'], alphabet_name_finder)
 
 Or, using `BaseNameFinder` class to build a `name_finder`:
 
-```python3
+```python
 import string
 from unoccupied import unoccupied
 from unoccupied import BaseNameFinder
