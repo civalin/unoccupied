@@ -202,7 +202,8 @@ The `template` argument is a python `str.format()` template. This template can i
 ## Test
 
 ```sh
-./setup.py test  # or pytest
+pip install -r test_requirements.txt
+pytest
 ```
 
 
