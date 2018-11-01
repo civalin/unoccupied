@@ -10,4 +10,5 @@ test:
 
 pep8:
   script:
+  - pip install pep8
   - pep8
