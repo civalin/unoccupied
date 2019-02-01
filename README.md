@@ -1,5 +1,7 @@
 # Unoccupied
 
+[![Build Status](https://travis-ci.org/visig9/unoccupied.svg?branch=master)](https://travis-ci.org/visig9/unoccupied)
+
 Find an unoccupied name by `basename` & `occupied names`.
 
 If you tired to write a bunch of code to deal `unnamed note 02`, `pic-03.jpg`, `archive.part4.zip` naming problem. It's for you.
